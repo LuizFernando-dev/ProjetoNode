@@ -1,0 +1,47 @@
+Criando um projeto Node:
+1- comando: 'npm init', inicia um projeto node criando o package.json com as configuraçoes básicas
+
+2- Para seguir um padrão de desenvolvimento de um sistema Node, temos a seguinte estrutura: dentro da pasta raiz:
+<PastaRaiz>
+    <src>
+        <app>
+            pastas contendo a lógica do sistema ex: views,rotas...
+        </app>
+        <config>
+            pastas ou arquivos contendo as configurações
+        </config>
+    </src>
+
+    package.json
+    servidor.js
+</PastaRaiz>
+
+3- instalar o framework 'express' para lidar com as requisiçoes. comando: 'npm install express'
+
+4- Arquivo para centralizar as funçoes: custom-express
+    A-Cria uma instancia do express requerindo o express que foi instalado no passo anterior:
+    const express = require('express')
+
+    B-chama a função da instancia express para obter um objeto que aqui vai ser chamado de app: const app = express()
+
+    C-Exportando o app: module.exports = app
+
+    D- vamos fazer o servidor rodar em um arquivo dedicado a somente isso. Então criamos um arquivo server.js 
+    na pasta raiz do projeto e requerimos o objeto app exportado no passo 'C' com a seguinte linha de código:
+     'const app = require('caminhoDaPasta/custom-express')'. Feito isso usaremos o seguinte código:
+     'app.listen(3000, ()=> console.log("iniciando o servidor na porta 3000"))' 
+
+     F- Nosso servidor também precisa responder as requiçoes que chegam do navegador o objeto app tem um método chamado
+     get que atende as requicoes e retorna uma resposta, como por exemplo ele pode receber uma requicao para o endereço'/'
+     do nosso projeto e devolver como resposta uma página HTML que representa a tela inicial do sistema. Uma estrátegia 
+     interessante é guardar todas as rotas do nosso sistema em um arquivo separado. Então dentro da pasta app onde contém
+     os arquivos da lógica do nosso sistema vamos criar a pasta rotas, já dentro da pasta rotas vamos criar o arquivo
+     roras.js, ja dentro desta pasta vamos ter todos os mapeamentos para os arquivos de views do nosso sistema.
+        Este arquivo vai exportar uma função que recebe o objeto app para devolver a resposta:
+        'module.exports = (app) => {
+            app.get('/', (req,resp)=> resp.send(html) )
+        }'
+
+     É dentro do arquivo 'custom-express' que centraliza nossas acoes que requerimos esse metodo,
+     'const rotas = require('../app/rotas/rotas')'. Depois chamamos ele passando o objeto app como parametro:
+     'rotas(app)'
