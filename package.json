@@ -1,0 +1,19 @@
+{
+  "name": "projetos",
+  "version": "1.0.0",
+  "description": "criacao de um projeto usando node no servidor",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "origin https://github.com/LuizFernando-dev/ProjetoNode.git"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Luiz Fernando",
+  "license": "ISC"
+}
