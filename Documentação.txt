@@ -45,3 +45,26 @@ Criando um projeto Node:
      É dentro do arquivo 'custom-express' que centraliza nossas acoes que requerimos esse metodo,
      'const rotas = require('../app/rotas/rotas')'. Depois chamamos ele passando o objeto app como parametro:
      'rotas(app)'
+
+     5- Fazer atualiazações automatizadas no servidor 
+     -comando 'npm install nodemon --save-dev' e 'npm install -g nodemon'.Para usar o nodemon quando for iniciar o servidor
+     use o nodemon arquivo.js, ou npm start, desde que se configure o package.json para rodar nodemon como padrao ao chamar 
+     npm start
+
+     6-templates dinamicos com o marko
+     - comando para instalar o marko: 'npm install marko'
+     -no custom-express, temos que configurar o marko para trabalhar com o express.Para isso temos que colocar duas linhas
+     de codigo para fazer essa configuração do marko:
+     'require('marko/node-require').install e require('marko/express')'
+
+     -Sobre o marko: "o marko é relacionado com a parte de views do projeto portanto dentro da nossa estrutura atual na
+     pasta app vamos criar a pasta view, na pasta view vamos organizar os arquivos visuais do nosso projeto, os arquivos
+     .HTML que usando o marko vai se tornar .marko"
+
+     -Rotas com Marko: "em rotas nos retornamos um arquivo html como resposta para uma requisição, com o marko podemos 
+     substituir o resp.send(html) por resp.marko(require('caminhoDoArquivoMarko/arquivo.marko'))"
+     -também podemos passar como parametro dessa função resp.marko um objeto ou array: 
+        'resp.marko(require('caminhoDoArquivoMarko/arquivo.marko'), array[])"'
+    no arquivo marko referenciado temos acesso a esse objeto ou array para acessar esses valores usamos ${objeto}
+    -importante: para usar o nodemon e o marko ao mesmo tempo precisamos pedir no script responsavel pelo start no
+    package.json que ignore os arquivos marko: 'nodemon server.js --ignore *.marko.js'
